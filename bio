@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta name="description" content="Découvrez la biotechnologie : parcours d’études, métiers, compétences et secteurs pour construire votre avenir dans les sciences du vivant.">
+  <title>Bioavenir — La biotechnologie, en clair</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172f2c;
+      --muted: #687671;
+      --green: #245c4b;
+      --green-dark: #193f36;
+      --lime: #d7ed9f;
+      --paper: #f6f7f2;
+      --white: #fff;
+      --line: #e5e9e1;
+      --lavender: #eeebf7;
+      --peach: #f8ece0;
+      --shadow: 0 18px 50px rgba(27, 55, 46, .08);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); line-height: 1.6; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 3px solid #8aaf56;
+      outline-offset: 4px;
+    }
+
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(246, 247, 242, .93);
+      border-bottom: 1px solid rgba(229, 233, 225, .8);
+      backdrop-filter: blur(14px);
+    }
+    .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; letter-spacing: -.05em; }
+    .brand-mark {
+      width: 35px; height: 35px; display: grid; place-items: center; color: var(--green-dark);
+      background: var(--lime); border-radius: 12px; font-size: 19px;
+    }
+    .brand-name { font-size: 19px; }
+    .brand-name span { color: var(--green); }
+    .main-nav { display: flex; align-items: center; gap: 27px; }
+    .main-nav a { color: #53635e; font-size: 13px; font-weight: 650; text-decoration: none; }
+    .main-nav a:hover { color: var(--green); }
+    .nav-cta { padding: 10px 16px; color: white !important; background: var(--green-dark); border-radius: 999px; }
+
+    .hero { padding: 76px 0 68px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 48px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--green);
+      font-size: 11px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+    }
+    .eyebrow::before { width: 8px; height: 8px; background: #95b95e; border-radius: 50%; content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 620px; margin-bottom: 19px; font-size: clamp(42px, 6vw, 68px); line-height: 1.04; letter-spacing: -.065em; }
+    h1 em { color: var(--green); font-style: normal; }
+    .hero-copy { max-width: 510px; margin-bottom: 27px; color: var(--muted); font-size: 16px; }
+    .button-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px;
+      padding: 0 18px; border: 1px solid transparent; border-radius: 999px; font-size: 13px;
+      font-weight: 750; text-decoration: none; transition: transform .18s ease, background .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: white; background: var(--green-dark); }
+    .button-primary:hover { background: var(--green); }
+    .button-secondary { border-color: #dce3d9; background: transparent; }
+    .button-secondary:hover { background: white; }
+    .hero-note { display: flex; align-items: center; gap: 9px; margin: 23px 0 0; color: #78837e; font-size: 11px; }
+    .hero-note strong { color: var(--green); }
+
+    .visual {
+      position: relative; min-height: 380px; display: grid; place-items: center;
+      border: 1px solid #e8ebdf; border-radius: 34px; overflow: hidden;
+      background: radial-gradient(ellipse at 50% 45%, #e8f0d7 0, #e8f0d7 19%, transparent 20%),
+        radial-gradient(ellipse at 15% 16%, #f9f0e2 0, #f9f0e2 23%, transparent 24%),
+        radial-gradient(ellipse at 88% 90%, #e9e5f4 0, #e9e5f4 24%, transparent 25%), #f0f3e8;
+    }
+    .visual::before, .visual::after {
+      position: absolute; width: 250px; height: 250px; border: 1px solid rgba(49, 93, 73, .13);
+      border-radius: 50%; content: "";
+    }
+    .visual::after { width: 320px; height: 320px; }
+    .dna { position: relative; z-index: 1; width: 210px; height: 280px; overflow: visible; }
+    .float-card {
+      position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 12px 15px;
+      border: 1px solid rgba(255,255,255,.9); border-radius: 15px; background: rgba(255,255,255,.9);
+      box-shadow: 0 12px 30px rgba(42, 66, 52, .1); font-size: 11px; font-weight: 750;
+    }
+    .float-card span:first-child { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 10px; background: var(--lime); font-size: 15px; }
+    .float-one { top: 52px; left: 21px; }
+    .float-two { right: 15px; bottom: 56px; }
+    .visual-label { position: absolute; bottom: 18px; left: 23px; color: #75837a; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+
+    .quick-facts { padding: 21px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.52); }
+    .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .fact { display: flex; align-items: center; gap: 12px; }
+    .fact-icon { width: 38px; height: 38px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 12px; background: white; font-size: 17px; }
+    .fact strong, .fact span { display: block; }
+    .fact strong { font-size: 13px; }
+    .fact span { color: var(--muted); font-size: 10px; }
+
+    .section { padding: 88px 0; }
+    .section-heading { max-width: 610px; margin-bottom: 34px; }
+    .section-heading h2 { margin-bottom: 12px; font-size: clamp(30px, 4vw, 43px); line-height: 1.12; letter-spacing: -.05em; }
+    .section-heading > p:last-child { margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .two-column { display: grid; grid-template-columns: .8fr 1.2fr; gap: 58px; align-items: start; }
+    .intro-card { padding: 26px; border-radius: 22px; background: var(--green-dark); color: white; }
+    .intro-card .mini-label { margin-bottom: 16px; color: var(--lime); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .intro-card h3 { margin-bottom: 12px; font-size: 22px; line-height: 1.2; letter-spacing: -.035em; }
+    .intro-card p { margin-bottom: 0; color: #d3ddd4; font-size: 12px; }
+    .topic-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .topic { padding: 19px; border: 1px solid var(--line); border-radius: 16px; background: white; }
+    .topic-icon { display: block; margin-bottom: 11px; font-size: 20px; }
+    .topic h3 { margin-bottom: 5px; font-size: 13px; }
+    .topic p { margin-bottom: 0; color: var(--muted); font-size: 11px; }
+
+    .study-section { background: #edf1e9; }
+    .study-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 56px; align-items: start; }
+    .study-intro { position: sticky; top: 105px; }
+    .study-intro .section-heading { margin-bottom: 20px; }
+    .notice { padding: 15px 16px; border: 1px solid #dfe6d9; border-radius: 14px; background: rgba(255,255,255,.6); color: #53645a; font-size: 11px; }
+    .notice strong { color: var(--green-dark); }
+    .timeline { position: relative; display: grid; gap: 12px; }
+    .timeline::before { position: absolute; top: 24px; bottom: 24px; left: 20px; width: 1px; background: #d7dfd2; content: ""; }
+    .study-card { position: relative; display: grid; grid-template-columns: 42px 1fr; gap: 13px; padding: 17px; border: 1px solid #e4e9e0; border-radius: 17px; background: white; }
+    .study-step { z-index: 1; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid #dce8ca; border-radius: 13px; background: #f2f7e9; color: var(--green); font-size: 11px; font-weight: 800; }
+    .study-card h3 { margin: 2px 0 5px; font-size: 14px; }
+    .study-card p { margin: 0; color: var(--muted); font-size: 11px; }
+    .study-card .duration { display: inline-block; margin-bottom: 4px; color: #78904f; font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .alternatives { margin-top: 16px; padding: 17px 19px; border-radius: 16px; background: #e3e9dd; }
+    .alternatives strong { display: block; margin-bottom: 4px; font-size: 12px; }
+    .alternatives p { margin: 0; color: #5f6e63; font-size: 11px; }
+
+    .careers-section { background: white; }
+    .career-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin: -5px 0 22px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; }
+    .filter-button { padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; background: white; color: #65736d; cursor: pointer; font-size: 10px; font-weight: 700; }
+    .filter-button[aria-pressed="true"] { border-color: var(--green-dark); background: var(--green-dark); color: white; }
+    .search-wrap { position: relative; }
+    .search-wrap::before { position: absolute; top: 8px; left: 12px; color: #77847d; content: "⌕"; font-size: 17px; }
+    .search-input { width: min(230px, 70vw); height: 37px; padding: 0 12px 0 34px; border: 1px solid var(--line); border-radius: 999px; background: #fbfcfa; font-size: 11px; }
+    .career-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .career-card { min-height: 190px; padding: 19px; border: 1px solid var(--line); border-radius: 17px; background: #fff; transition: transform .18s ease, box-shadow .18s ease; }
+    .career-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .career-card[hidden] { display: none; }
+    .career-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 15px; }
+    .career-icon { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 12px; background: #edf3e6; font-size: 17px; }
+    .career-tag { padding: 5px 8px; border-radius: 999px; background: #f4f3ef; color: #68766d; font-size: 8px; font-weight: 750; text-transform: uppercase; }
+    .career-card h3 { margin-bottom: 7px; font-size: 14px; }
+    .career-card p { min-height: 38px; margin-bottom: 12px; color: var(--muted); font-size: 10px; }
+    .career-level { padding-top: 10px; border-top: 1px solid #edf0eb; color: #596961; font-size: 9px; }
+    .career-level strong { color: var(--green); }
+    .empty-state { display: none; padding: 24px; border: 1px dashed #d4ddd1; border-radius: 15px; color: var(--muted); text-align: center; font-size: 13px; }
+    .empty-state.visible { display: block; }
+
+    .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .skills-card { padding: 25px; border: 1px solid var(--line); border-radius: 19px; background: white; }
+    .skills-card h3 { margin-bottom: 17px; font-size: 16px; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-chip { padding: 8px 11px; border-radius: 999px; background: #eef3e8; color: #43604c; font-size: 10px; font-weight: 650; }
+    .skill-chip:nth-child(3n) { background: var(--lavender); color: #635b80; }
+    .skill-chip:nth-child(3n + 2) { background: var(--peach); color: #88654a; }
+
+    .outlook { padding: 0 0 88px; }
+    .outlook-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; padding: 38px; border-radius: 24px; background: var(--lime); }
+    .outlook-card .eyebrow { margin-bottom: 11px; color: var(--green-dark); }
+    .outlook-card h2 { max-width: 600px; margin-bottom: 9px; font-size: clamp(27px, 4vw, 38px); line-height: 1.12; letter-spacing: -.05em; }
+    .outlook-card p:last-child { max-width: 580px; margin: 0; color: #526647; font-size: 12px; }
+    .outlook-arrow { width: 55px; height: 55px; display: grid; place-items: center; border-radius: 50%; background: var(--green-dark); color: white; font-size: 23px; text-decoration: none; transition: transform .18s ease; }
+    .outlook-arrow:hover { transform: translateY(-3px); }
+    footer { padding: 22px 0; border-top: 1px solid var(--line); color: #78837e; font-size: 10px; }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+    .footer-inner p { margin: 0; }
+    .footer-inner a { color: var(--green); font-weight: 700; text-decoration: none; }
+
+    @media (max-width: 800px) {
+      .hero-grid, .two-column, .study-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 33px; }
+      .visual { min-height: 330px; }
+      .facts-grid { grid-template-columns: repeat(2, 1fr); }
+      .study-intro { position: static; }
+      .career-grid { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 70px 0; }
+      .outlook { padding-bottom: 70px; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 32px, 1120px); }
+      .header-inner { min-height: 66px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 8px; padding-block: 10px; }
+      .main-nav { width: 100%; gap: 18px; overflow-x: auto; padding-bottom: 2px; }
+      .main-nav a { flex: 0 0 auto; font-size: 11px; }
+      .nav-cta { padding: 5px 10px; }
+      .hero { padding: 53px 0 49px; }
+      h1 { font-size: 46px; }
+      .hero-copy { font-size: 14px; }
+      .visual { min-height: 290px; border-radius: 25px; }
+      .float-one { left: 10px; }
+      .float-two { right: 8px; }
+      .facts-grid { gap: 16px 10px; }
+      .fact { gap: 8px; }
+      .fact-icon { width: 33px; height: 33px; }
+      .fact strong { font-size: 11px; }
+      .fact span { font-size: 9px; }
+      .topic-list, .career-grid, .skills-layout { grid-template-columns: 1fr; }
+      .career-card { min-height: auto; }
+      .career-card p { min-height: 0; }
+      .career-toolbar { align-items: flex-start; }
+      .filters { gap: 6px; }
+      .filter-button { padding: 7px 10px; }
+      .search-wrap { width: 100%; }
+      .search-input { width: 100%; }
+      .outlook-card { grid-template-columns: 1fr auto; gap: 12px; padding: 25px 20px; }
+      .outlook-arrow { width: 43px; height: 43px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#accueil" aria-label="Bioavenir, accueil">
+        <span class="brand-mark" aria-hidden="true">⌬</span>
+        <span class="brand-name">bio<span>avenir</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="#decouvrir">Découvrir</a>
+        <a href="#etudes">Les études</a>
+        <a href="#metiers">Les métiers</a>
+        <a href="#competences">Compétences</a>
+        <a class="nav-cta" href="#etudes">Trouver ma voie <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Le guide des sciences du vivant</p>
+          <h1>La science du vivant. <em>Votre avenir.</em></h1>
+          <p class="hero-copy">Santé, environnement, alimentation… La biotechnologie transforme les découvertes scientifiques en solutions utiles au quotidien. Explorez les études et les métiers qui font avancer le vivant.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="#metiers">Explorer les métiers <span aria-hidden="true">→</span></a>
+            <a class="button button-secondary" href="#etudes">Comprendre les études</a>
+          </div>
+          <p class="hero-note"><strong>Un domaine, mille parcours.</strong> Sciences, technique, numérique ou gestion de projet.</p>
+        </div>
+        <div class="visual" aria-label="Illustration stylisée d’une molécule d’ADN">
+          <svg class="dna" viewBox="0 0 210 280" role="img" aria-labelledby="dna-title">
+            <title id="dna-title">Double hélice d’ADN stylisée</title>
+            <path d="M58 16 C166 62 44 105 151 145 C258 185 44 221 151 264" fill="none" stroke="#245c4b" stroke-width="8" stroke-linecap="round"/>
+            <path d="M151 16 C44 62 166 105 58 145 C-49 185 166 221 58 264" fill="none" stroke="#91b65a" stroke-width="8" stroke-linecap="round"/>
+            <g stroke="#c1d58f" stroke-width="4" stroke-linecap="round">
+              <path d="M84 34 125 34"/><path d="M65 64 144 64"/><path d="M66 94 143 94"/>
+              <path d="M82 124 126 124"/><path d="M83 164 126 164"/><path d="M66 194 143 194"/>
+              <path d="M66 224 143 224"/><path d="M82 250 126 250"/>
+            </g>
+            <g fill="#f6f7f2" stroke="#245c4b" stroke-width="4">
+              <circle cx="58" cy="16" r="8"/><circle cx="151" cy="16" r="8"/>
+              <circle cx="151" cy="264" r="8"/><circle cx="58" cy="264" r="8"/>
+            </g>
+          </svg>
+          <div class="float-card float-one"><span aria-hidden="true">🧬</span><span>Comprendre le vivant</span></div>
+          <div class="float-card float-two"><span aria-hidden="true">🌱</span><span>Imaginer des solutions</span></div>
+          <span class="visual-label">Sciences · innovation · impact</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-facts" aria-label="La biotechnologie en bref">
+      <div class="shell facts-grid">
+        <div class="fact"><span class="fact-icon" aria-hidden="true">🔬</span><div><strong>Du labo au terrain</strong><span>Recherche, essais, production</span></div></div>
+        <div class="fact"><span class="fact-icon" aria-hidden="true">🩺</span><div><strong>Des secteurs variés</strong><span>Santé, agro, environnement</span></div></div>
+        <div class="fact"><span class="fact-icon" aria-hidden="true">🧪</span><div><strong>Plusieurs parcours</strong><span>Du bac pro au doctorat</span></div></div>
+        <div class="fact"><span class="fact-icon" aria-hidden="true">🤝</span><div><strong>Des métiers d’équipe</strong><span>Sciences et savoir-faire croisés</span></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="decouvrir">
+      <div class="shell two-column">
+        <div>
+          <p class="eyebrow">D’abord, le domaine</p>
+          <div class="section-heading">
+            <h2>La biotechnologie, c’est quoi exactement&nbsp;?</h2>
+            <p>Elle utilise des organismes vivants, des cellules ou des molécules biologiques pour comprendre le vivant et développer de nouveaux produits ou procédés.</p>
+          </div>
+          <div class="intro-card">
+            <p class="mini-label">Le saviez-vous&nbsp;?</p>
+            <h3>Une découverte ne reste pas toujours au laboratoire.</h3>
+            <p>Elle peut devenir un médicament, un test de diagnostic, une culture plus résistante ou un procédé de fabrication moins polluant. Chaque étape mobilise des compétences différentes.</p>
+          </div>
+        </div>
+        <div class="topic-list" aria-label="Principaux domaines de la biotechnologie">
+          <article class="topic"><span class="topic-icon" aria-hidden="true">🩺</span><h3>Biotechnologies rouges</h3><p>Santé, vaccins, médicaments, thérapies et diagnostic médical.</p></article>
+          <article class="topic"><span class="topic-icon" aria-hidden="true">🌾</span><h3>Biotechnologies vertes</h3><p>Agriculture, sélection végétale et amélioration des cultures.</p></article>
+          <article class="topic"><span class="topic-icon" aria-hidden="true">♻️</span><h3>Biotechnologies blanches</h3><p>Industrie, fermentation et procédés de production plus sobres.</p></article>
+          <article class="topic"><span class="topic-icon" aria-hidden="true">🌊</span><h3>Biotechnologies bleues</h3><p>Ressources marines, biodiversité et organismes aquatiques.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section study-section" id="etudes">
+      <div class="shell study-grid">
+        <div class="study-intro">
+          <p class="eyebrow">Construire son parcours</p>
+          <div class="section-heading">
+            <h2>Quelles études pour travailler en biotech&nbsp;?</h2>
+            <p>Il n’existe pas une seule voie. Le diplôme dépend surtout du métier visé, du niveau de responsabilité et de la part de recherche souhaitée.</p>
+          </div>
+          <div class="notice"><strong>À retenir :</strong> en France, les admissions, intitulés et spécialisations varient selon les établissements. Vérifiez les programmes et prérequis sur leurs sites et sur Parcoursup.</div>
+        </div>
+        <div>
+          <div class="timeline">
+            <article class="study-card">
+              <span class="study-step" aria-hidden="true">01</span>
+              <div><span class="duration">Après la 3e · 2 à 3 ans</span><h3>Découvrir les sciences appliquées</h3><p>Bac général avec des spécialités scientifiques, ou voie technologique comme STL. Un bac professionnel peut aussi mener à certains postes techniques via une poursuite d’études adaptée.</p></div>
+            </article>
+            <article class="study-card">
+              <span class="study-step" aria-hidden="true">02</span>
+              <div><span class="duration">Bac +2 / bac +3</span><h3>Apprendre les gestes de laboratoire</h3><p>BTS biologie médicale, bioanalyses en laboratoire de contrôle ou biotechnologie en recherche et en production ; BUT génie biologique ; licence en sciences de la vie. Les intitulés évoluent : vérifiez l’offre actuelle.</p></div>
+            </article>
+            <article class="study-card">
+              <span class="study-step" aria-hidden="true">03</span>
+              <div><span class="duration">Bac +5</span><h3>Se spécialiser et piloter des projets</h3><p>Master en biotechnologies, biologie-santé, bio-informatique ou bioprocédés, ou diplôme d’ingénieur en biotechnologies, génie biologique ou génie des procédés.</p></div>
+            </article>
+            <article class="study-card">
+              <span class="study-step" aria-hidden="true">04</span>
+              <div><span class="duration">Bac +8 · selon le projet</span><h3>Approfondir la recherche</h3><p>Après un master ou un diplôme équivalent, le doctorat forme à la recherche et prépare notamment aux carrières scientifiques dans le public ou le privé.</p></div>
+            </article>
+          </div>
+          <div class="alternatives"><strong>Des passerelles existent.</strong><p>Formation continue, alternance, licences professionnelles et écoles d’ingénieurs offrent d’autres trajectoires. Les stages et l’expérience pratique comptent aussi beaucoup.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section careers-section" id="metiers">
+      <div class="shell">
+        <p class="eyebrow">Trouver sa place</p>
+        <div class="section-heading">
+          <h2>Des métiers pour tous les profils</h2>
+          <p>Manipuler, analyser, coder, contrôler ou coordonner : explorez quelques métiers liés à la biotechnologie et les formations fréquemment associées.</p>
+        </div>
+        <div class="career-toolbar">
+          <div class="filters" role="group" aria-label="Filtrer les métiers">
+            <button class="filter-button" type="button" data-filter="tous" aria-pressed="true">Tous</button>
+            <button class="filter-button" type="button" data-filter="laboratoire" aria-pressed="false">Laboratoire</button>
+            <button class="filter-button" type="button" data-filter="industrie" aria-pressed="false">Industrie</button>
+            <button class="filter-button" type="button" data-filter="numerique" aria-pressed="false">Numérique</button>
+            <button class="filter-button" type="button" data-filter="qualite" aria-pressed="false">Qualité &amp; essais</button>
+          </div>
+          <label class="search-wrap"><span class="sr-only" hidden>Rechercher un métier</span><input class="search-input" type="search" placeholder="Rechercher un métier…" aria-label="Rechercher un métier"></label>
+        </div>
+        <div class="career-grid" aria-live="polite">
+          <article class="career-card" data-category="laboratoire" data-search="technicien technicienne laboratoire analyses expériences contrôle échantillons bac 2 bac 3">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">🧫</span><span class="career-tag">Laboratoire</span></div>
+            <h3>Technicien·ne de laboratoire</h3><p>Réalise des analyses, prépare les échantillons et contribue au bon fonctionnement du laboratoire.</p><div class="career-level"><strong>Parcours fréquent :</strong> BTS, BUT ou licence professionnelle</div>
+          </article>
+          <article class="career-card" data-category="laboratoire" data-search="ingénieur ingénieure recherche développement r&d expériences bac 5">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">🔬</span><span class="career-tag">Recherche</span></div>
+            <h3>Ingénieur·e R&amp;D</h3><p>Conçoit et optimise des expériences ou des procédés pour mettre au point de nouvelles solutions.</p><div class="career-level"><strong>Parcours fréquent :</strong> bac +5 ; doctorat selon le poste</div>
+          </article>
+          <article class="career-card" data-category="numerique" data-search="bio informatique bioinformaticien bioinformaticienne données programmation génomique bac 5">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">💻</span><span class="career-tag">Numérique</span></div>
+            <h3>Bio-informaticien·ne</h3><p>Développe des outils et analyse des données biologiques, par exemple en génomique.</p><div class="career-level"><strong>Parcours fréquent :</strong> bac +5 en bio-informatique ou discipline proche</div>
+          </article>
+          <article class="career-card" data-category="industrie" data-search="ingénieur ingénieure bioproduction production fermentation procédés usine bac 5">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">⚙️</span><span class="career-tag">Industrie</span></div>
+            <h3>Ingénieur·e en bioproduction</h3><p>Adapte les procédés biologiques pour produire à plus grande échelle, en maîtrisant sécurité et performance.</p><div class="career-level"><strong>Parcours fréquent :</strong> bac +5 en bioprocédés ou génie biologique</div>
+          </article>
+          <article class="career-card" data-category="qualite" data-search="qualité assurance contrôle réglementaire réglementaires conformité normes bac 3 bac 5">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">✓</span><span class="career-tag">Qualité</span></div>
+            <h3>Spécialiste qualité &amp; réglementaire</h3><p>Vérifie la conformité des produits, des méthodes et de la documentation aux exigences applicables.</p><div class="career-level"><strong>Parcours fréquent :</strong> bac +3 à bac +5 selon le poste</div>
+          </article>
+          <article class="career-card" data-category="qualite" data-search="recherche clinique essais clinique clinique coordinateur coordinatrice patients bac 3 bac 5">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">🩺</span><span class="career-tag">Essais cliniques</span></div>
+            <h3>Coordinateur·rice d’essais cliniques</h3><p>Participe à l’organisation et au suivi d’études cliniques, dans le respect du protocole et des participants.</p><div class="career-level"><strong>Parcours fréquent :</strong> bac +3 à bac +5, souvent avec spécialisation</div>
+          </article>
+          <article class="career-card" data-category="laboratoire" data-search="chercheur chercheuse recherche doctorat sciences biologiques laboratoire bac 8">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">🧬</span><span class="career-tag">Recherche</span></div>
+            <h3>Chercheur·euse en biotechnologie</h3><p>Étudie une question scientifique, construit des projets de recherche et partage les résultats.</p><div class="career-level"><strong>Parcours fréquent :</strong> doctorat (bac +8) après un bac +5</div>
+          </article>
+          <article class="career-card" data-category="industrie" data-search="technicien technicienne production fabrication fermentation biologie bac 2 bac 3">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">🧪</span><span class="career-tag">Production</span></div>
+            <h3>Technicien·ne de production</h3><p>Conduit et surveille des équipements de fabrication de produits issus du vivant.</p><div class="career-level"><strong>Parcours fréquent :</strong> BTS, BUT ou licence professionnelle</div>
+          </article>
+          <article class="career-card" data-category="qualite" data-search="technicien technicienne contrôle analytique laboratoire qualité essais bac 2 bac 3">
+            <div class="career-top"><span class="career-icon" aria-hidden="true">📋</span><span class="career-tag">Contrôle</span></div>
+            <h3>Technicien·ne de contrôle</h3><p>Contrôle les matières premières ou les produits finis et consigne les résultats d’analyse.</p><div class="career-level"><strong>Parcours fréquent :</strong> BTS ou BUT en analyses biologiques</div>
+          </article>
+        </div>
+        <p class="empty-state" role="status">Aucun métier ne correspond à votre recherche. Essayez un autre mot-clé.</p>
+      </div>
+    </section>
+
+    <section class="section" id="competences">
+      <div class="shell">
+        <p class="eyebrow">Au-delà des diplômes</p>
+        <div class="section-heading">
+          <h2>Les compétences qui font la différence</h2>
+          <p>Les biotech reposent sur une collaboration entre disciplines. Les compétences à développer dépendent du métier, mais la curiosité et la rigueur sont de bons points de départ.</p>
+        </div>
+        <div class="skills-layout">
+          <article class="skills-card">
+            <h3>Compétences scientifiques &amp; techniques</h3>
+            <div class="skill-list">
+              <span class="skill-chip">Biologie cellulaire</span><span class="skill-chip">Génétique</span>
+              <span class="skill-chip">Biochimie</span><span class="skill-chip">Microbiologie</span>
+              <span class="skill-chip">Techniques de laboratoire</span><span class="skill-chip">Statistiques</span>
+              <span class="skill-chip">Analyse de données</span><span class="skill-chip">Réglementation</span>
+            </div>
+          </article>
+          <article class="skills-card">
+            <h3>Qualités &amp; compétences transversales</h3>
+            <div class="skill-list">
+              <span class="skill-chip">Rigueur</span><span class="skill-chip">Esprit critique</span>
+              <span class="skill-chip">Travail d’équipe</span><span class="skill-chip">Communication</span>
+              <span class="skill-chip">Organisation</span><span class="skill-chip">Anglais scientifique</span>
+              <span class="skill-chip">Résolution de problèmes</span><span class="skill-chip">Curiosité</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="outlook" aria-label="Conseils pour avancer">
+      <div class="shell">
+        <div class="outlook-card">
+          <div><p class="eyebrow">Le prochain pas</p><h2>Envie d’aller plus loin&nbsp;?</h2><p>Comparez les programmes, échangez avec des étudiants et cherchez une immersion ou un stage pour découvrir le quotidien des métiers. Votre projet peut évoluer à chaque étape.</p></div>
+          <a class="outlook-arrow" href="#etudes" aria-label="Revenir aux parcours d’études">↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <p><strong>bioavenir</strong> · Un guide pour explorer les sciences du vivant.</p>
+      <p>Informations générales : vérifiez les formations et débouchés auprès des établissements.</p>
+    </div>
+  </footer>
+
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const careerCards = document.querySelectorAll(".career-card");
+    const searchInput = document.querySelector(".search-input");
+    const emptyState = document.querySelector(".empty-state");
+    let activeCategory = "tous";
+
+    function updateCareers() {
+      const query = searchInput.value.trim().toLocaleLowerCase("fr");
+      let visibleCount = 0;
+
+      careerCards.forEach((card) => {
+        const categoryMatches = activeCategory === "tous" || card.dataset.category === activeCategory;
+        const searchMatches = !query || card.textContent.toLocaleLowerCase("fr").includes(query)
+          || card.dataset.search.includes(query);
+        const visible = categoryMatches && searchMatches;
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+
+      emptyState.classList.toggle("visible", visibleCount === 0);
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.filter;
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        updateCareers();
+      });
+    });
+
+    searchInput.addEventListener("input", updateCareers);
+  </script>
+</body>
+</html>
